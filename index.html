@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="A simple, beautiful live weather dashboard powered by Open-Meteo.">
+  <title>Weather — Skydash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="dashboard">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Skydash home">
+        <span class="brand-mark" aria-hidden="true">☼</span>
+        <span>sky<span class="brand-light">dash</span></span>
+      </a>
+      <form class="search" id="search-form" role="search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <label class="visually-hidden" for="city-search">Search for a city</label>
+        <input id="city-search" name="city" type="search" placeholder="Search a city..." autocomplete="off" required>
+        <button type="submit" aria-label="Search">Search</button>
+      </form>
+      <div class="unit-switch" aria-label="Temperature units">
+        <button type="button" class="unit-button active" data-unit="celsius" aria-pressed="true">°C</button>
+        <span aria-hidden="true">|</span>
+        <button type="button" class="unit-button" data-unit="fahrenheit" aria-pressed="false">°F</button>
+      </div>
+    </header>
+
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+
+    <section class="hero panel" aria-label="Current weather">
+      <div class="hero-copy">
+        <p class="eyebrow" id="today-label">WEATHER TODAY</p>
+        <h1 id="location">Loading weather<span class="location-dot">.</span></h1>
+        <p class="date-line" id="current-date">—</p>
+        <div class="temperature-row">
+          <span class="temperature" id="temperature">—</span>
+          <span class="condition" id="condition">Fetching forecast</span>
+        </div>
+        <p class="feels-like" id="feels-like">Feels like —</p>
+      </div>
+      <div class="hero-art" id="hero-art" aria-hidden="true"><span>☀</span></div>
+      <div class="hero-footer">
+        <span><span class="mini-icon">↑</span> H <strong id="high-temp">—</strong></span>
+        <span><span class="mini-icon">↓</span> L <strong id="low-temp">—</strong></span>
+        <span class="hero-place" id="country-label"></span>
+      </div>
+    </section>
+
+    <section class="section-block" aria-labelledby="highlights-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">RIGHT NOW</p><h2 id="highlights-title">Today's highlights</h2></div>
+      </div>
+      <div class="highlights-grid">
+        <article class="metric-card panel">
+          <div class="metric-heading"><span>Feels like</span><span class="metric-symbol" aria-hidden="true">◉</span></div>
+          <p class="metric-value" id="metric-feels">—</p>
+          <p class="metric-note" id="feels-note">—</p>
+        </article>
+        <article class="metric-card panel">
+          <div class="metric-heading"><span>Humidity</span><span class="metric-symbol" aria-hidden="true">◌</span></div>
+          <p class="metric-value"><span id="humidity">—</span><small>%</small></p>
+          <div class="humidity-track"><span id="humidity-bar"></span></div>
+          <p class="metric-note">Relative humidity</p>
+        </article>
+        <article class="metric-card panel">
+          <div class="metric-heading"><span>Wind speed</span><span class="metric-symbol" aria-hidden="true">〰</span></div>
+          <p class="metric-value"><span id="wind-speed">—</span><small id="wind-unit">km/h</small></p>
+          <p class="metric-note">At your location</p>
+        </article>
+        <article class="metric-card panel">
+          <div class="metric-heading"><span>Chance of rain</span><span class="metric-symbol" aria-hidden="true">⌁</span></div>
+          <p class="metric-value"><span id="rain-chance">—</span><small>%</small></p>
+          <p class="metric-note">Today's peak chance</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="forecast-layout">
+      <section class="section-block panel forecast-panel" aria-labelledby="hourly-title">
+        <div class="section-heading compact-heading"><div><p class="eyebrow">THE NEXT HOURS</p><h2 id="hourly-title">Hourly forecast</h2></div></div>
+        <div class="hourly-list" id="hourly-list"><p class="loading-copy">Loading hourly forecast…</p></div>
+      </section>
+      <section class="section-block panel weekly-panel" aria-labelledby="weekly-title">
+        <div class="section-heading compact-heading"><div><p class="eyebrow">PLAN AHEAD</p><h2 id="weekly-title">7-day forecast</h2></div></div>
+        <div class="daily-list" id="daily-list"><p class="loading-copy">Loading weekly forecast…</p></div>
+      </section>
+    </div>
+
+    <footer class="footer"><span>Made for clearer skies.</span><span>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a></span></footer>
+  </main>
+</body>
+</html>
